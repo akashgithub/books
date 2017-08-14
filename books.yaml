@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: books-service
+  labels:
+    app: books-service
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: books-app
+    tier: service-tier
+  type: NodePort
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: books-deployment
+  labels:
+    app: books-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: books-app
+        tier: service-tier
+    spec:
+      containers:
+      - image: akashdocker29/books:latest
+        name: books
+        ports:
+        - containerPort: 8080
+          name: books
+
