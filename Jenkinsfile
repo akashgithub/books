@@ -23,5 +23,5 @@ node {
     stage "Deploy"
 
         sh "sed 's#127.0.0.1:30400/books:latest#'$BUILDIMG'#' ./books.yaml | kubectl apply -f -"
-        sh "kubectl rollout status deployment/books"
+        sh "kubectl rollout status deployment/books-deployment"
 }
