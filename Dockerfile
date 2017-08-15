@@ -1,4 +1,4 @@
-FROM adp-base:latest
+FROM 127.0.0.1:30400/adp-base:latest
 
 # Define working directory.
 WORKDIR /books
